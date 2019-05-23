@@ -1,0 +1,46 @@
+{
+  "name": "npmapper",
+  "version": "0.0.1",
+  "description": "A tool for mapping npm scripts",
+  "main": "src/index.js",
+  "private": false,
+  "bin": {
+    "npmapper": "bin/npmapper"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Matti Bar-Zeev",
+  "license": "MIT",
+  "homepage": "https://github.com/mbarzeev/npmapper",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mbarzeev/npmapper"
+  },
+  "bugs": {
+    "url": "https://github.com/mbarzeev/npmapper/issues"
+  },
+  "keywords": [
+    "npm",
+    "mapping",
+    "scripts"
+  ],
+  "dependencies": {
+    "awaity": "1.0.0",
+    "chalk": "2.4.2",
+    "commander": "3.0.2",
+    "esm": "3.2.22",
+    "fs-extra": "8.0.1",
+    "jsdom": "15.1.1",
+    "open": "6.3.0"
+  },
+  "devDependencies": {
+    "@babel/core": "7.4.5",
+    "@babel/preset-env": "7.4.5",
+    "babel-jest": "24.8.0",
+    "jest": "24.6"
+  }
+}

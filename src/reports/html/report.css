@@ -1,0 +1,128 @@
+/* Colors palette from https://colorhunt.co/palette/142663 */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    background: #ececec;
+    color: #142d4c;
+}
+
+.target_dir {
+    color: #385170;
+}
+
+.action {
+    margin: 10px;
+    padding: 10px;
+    border-radius: 6px;
+    color: #9fd3c7;
+}
+
+.action input[type='checkbox'] {
+    display: none;
+}
+
+.action.script {
+    background: #142d4c;
+    border: 1px solid;
+    font-size: 20px;
+}
+
+.action.command {
+    background: #385170;
+    font-size: 18px;
+}
+
+.params {
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+.params_table {
+    width: 100%;
+    color: #9fd3c7;
+    border: 1px solid;
+}
+
+th,
+td {
+    padding: 2px 6px;
+}
+
+th {
+    text-align: left;
+    background-color: #9fd3c7;
+    color: #385170;
+}
+
+td {
+    white-space: nowrap;
+}
+
+.params_table td:last-child {
+    width: 100%;
+}
+
+[class^='icofont-'] {
+    margin-right: 6px;
+}
+
+.third-party-license {
+    font-size: 12px;
+}
+
+.legend {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.collapsible-content {
+    display: none;
+}
+
+.wrap-collapsible > .lbl-toggle {
+    display: block;
+    font-weight: bold;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 7px;
+    transition: all 0.25s ease-out;
+}
+
+.wrap-collapsible > .lbl-toggle:hover {
+    color: #f1bc31;
+}
+
+.wrap-collapsible > .lbl-toggle::before {
+    content: ' ';
+    display: inline-block;
+
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 5px solid currentColor;
+
+    vertical-align: middle;
+    margin-right: 0.7rem;
+    transform: translateY(-2px);
+
+    transition: transform 0.2s ease-out;
+}
+
+.wrap-collapsible > .collapsible-content {
+    max-height: 0px;
+    overflow: hidden;
+    display: block;
+
+    transition: max-height 0.25s ease-in-out;
+}
+
+.wrap-collapsible > .collapsible-content .content-inner {
+    padding: 0.5rem 1rem;
+}
+
+.wrap-collapsible > .toggle:checked + .lbl-toggle + .collapsible-content {
+    max-height: 20000px;
+}
+
+.wrap-collapsible > .toggle:checked + .lbl-toggle::before {
+    transform: rotate(90deg) translateX(-3px);
+}

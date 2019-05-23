@@ -1,0 +1,103 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Main application getSingleCommandObject method should return action object for a multi dashed parameter some with values and some without 1`] = `
+Object {
+  "name": "dummy command",
+  "params": Array [
+    Object {
+      "name": "--firstParam",
+      "value": "firstParamValue",
+    },
+    Object {
+      "name": "--secondParam",
+      "value": undefined,
+    },
+    Object {
+      "name": "--thirdParam",
+      "value": undefined,
+    },
+  ],
+  "type": "command",
+}
+`;
+
+exports[`Main application getSingleCommandObject method should return action object for a multi dashed parameter with values 1`] = `
+Object {
+  "name": "dummy command",
+  "params": Array [
+    Object {
+      "name": "--firstParam",
+      "value": "firstParamValue",
+    },
+    Object {
+      "name": "--secondParam",
+      "value": "secondParamValue",
+    },
+    Object {
+      "name": "--thirdParam",
+      "value": "thirdParamValue",
+    },
+  ],
+  "type": "command",
+}
+`;
+
+exports[`Main application getSingleCommandObject method should return action object for a multi dashed parameter with values with random spaces 1`] = `
+Object {
+  "name": "dummy command",
+  "params": Array [
+    Object {
+      "name": "--firstParam",
+      "value": "",
+    },
+    Object {
+      "name": "--secondParam",
+      "value": "secondParamValue",
+    },
+    Object {
+      "name": "--thirdParam",
+      "value": "thirdParamValue",
+    },
+  ],
+  "type": "command",
+}
+`;
+
+exports[`Main application getSingleCommandObject method should return action object for a singe dashed parameter with value 1`] = `
+Object {
+  "name": "dummy command",
+  "params": Array [
+    Object {
+      "name": "-q",
+      "value": "qValue",
+    },
+  ],
+  "type": "command",
+}
+`;
+
+exports[`Main application getSingleCommandObject method should return action object for a singe dashed parameter without value 1`] = `
+Object {
+  "name": "dummy command",
+  "params": Array [
+    Object {
+      "name": "-q",
+      "value": undefined,
+    },
+  ],
+  "type": "command",
+}
+`;
+
+exports[`Main application getSingleCommandObject method should return action object for a single dashed parameter with name and value separate with "=" sign 1`] = `
+Object {
+  "name": "dummy command",
+  "params": Array [
+    Object {
+      "name": "--firstParam",
+      "value": "firstParamValue",
+    },
+  ],
+  "type": "command",
+}
+`;
