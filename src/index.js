@@ -213,8 +213,6 @@ async function getActionsArray(rawActions, jsonFileContent) {
             // If the action is a nested NPM script we wish to dig inside it
             if (NESTED_SCRIPT_REGEX.test(curr)) {
                 const nestedScriptName = curr.replace(NESTED_SCRIPT_REGEX, '');
-                console.log('curr', curr);
-                console.log('nestedScriptName', nestedScriptName);
                 // Trim and clear any NPM's params (in the future it will be nice
                 // to support them as well)
                 const trimmedNestedScriptName = nestedScriptName.replace(NPM_PARAMS, '').trim();
