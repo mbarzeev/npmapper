@@ -1,8 +1,6 @@
 import chalk from 'chalk';
-import fs from 'fs';
-import fse from 'fs-extra';
+import fs from 'fs-extra';
 import path from 'path';
-import {promisify} from 'util';
 import reduce from 'awaity/reduce';
 import open from 'open';
 import {generateReport as generateHtmlReport} from './reports/html/html-reporter';
@@ -27,9 +25,6 @@ import {
     NPM_PARAMS,
 } from './constants';
 
-const access = promisify(fs.access);
-const readFile = promisify(fs.readFile);
-const writeFile = promisify(fs.writeFile);
 let originJsonFilePath;
 
 /**
@@ -57,7 +52,7 @@ export async function mapNpmScripts(options) {
  * @param {string} desiredScript - A specific script we wish to map
  * @returns {Array} The mapping result Array
  */
-async function parseNpmScripts(jsonFilePath, desiredScript) {
+export async function parseNpmScripts(jsonFilePath, desiredScript) {
     // Check if the file is accessible
     await getIsJsonFileAccessible(jsonFilePath);
     // Read the file
@@ -251,7 +246,7 @@ export function getSingleCommandObject(rawCommand, scriptsConfig) {
  */
 async function getJsonFileContent(jsonFilePath) {
     try {
-        const jsonFileContentData = await readFile(jsonFilePath, 'utf-8');
+        const jsonFileContentData = await fs.readFile(jsonFilePath, 'utf-8');
         return JSON.parse(jsonFileContentData);
     } catch (error) {
         console.error('%s Could not read package.json file', chalk.red.bold('ERROR'));
@@ -267,7 +262,7 @@ async function getJsonFileContent(jsonFilePath) {
  */
 async function getIsJsonFileAccessible(jsonFilePath) {
     try {
-        await access(jsonFilePath, fs.constants.R_OK);
+        await fs.access(jsonFilePath, fs.constants.R_OK);
     } catch (error) {
         throw new Error(`No package.json file can be found on ${jsonFilePath}`);
     }
@@ -314,7 +309,7 @@ async function createHtmlReport(scriptsMappingResult, packageJsonFilePath) {
     // Copy assets files to the target directory
     fs.copyFileSync(`${__dirname}/reports/html/report.css`, `${REPORTS_OUTPUT_PATH}/report.css`);
     fs.copyFileSync(`${__dirname}/reports/html/icofont.min.css`, `${REPORTS_OUTPUT_PATH}/icofont.min.css`);
-    fse.copySync(`${__dirname}/reports/html/fonts`, `${REPORTS_OUTPUT_PATH}/fonts`);
+    fs.copySync(`${__dirname}/reports/html/fonts`, `${REPORTS_OUTPUT_PATH}/fonts`);
     // Open the report in the default browser
     open(`${REPORTS_OUTPUT_PATH}/${REPORT_FILE_NAME}.html`);
 }
@@ -328,5 +323,5 @@ async function writeReportFile(fileName, content) {
     if (!fs.existsSync(REPORTS_OUTPUT_PATH)) {
         await fs.mkdirSync(REPORTS_OUTPUT_PATH);
     }
-    await writeFile(`${REPORTS_OUTPUT_PATH}/${fileName}`, content);
+    await fs.writeFile(`${REPORTS_OUTPUT_PATH}/${fileName}`, content);
 }
