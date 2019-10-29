@@ -13,6 +13,7 @@ See more option on the Example section below...
 Feature | Description
 ------------ | -------------
 Single script or all | You can tell `npmapper` to either go through the entire scripts on the package.json file or just a single one, using the `-s` params (see Parameters section below)  
+Auto-extract Pre & Post scripts | The tool will auto-extract the Pre and Post scripts if they exist
 Extract action's parameters | An action, which can be a call to any node script, bash, npm script etc., can have params to it which `npmapper` will attempt to extract and display in a table
 Script delegation | Trace scripts as they call nested scripts within the same package.json or even delegating to an **external** package.json file 
 Cross-project mapping | You have a script which uses the `--prefix` parameter to call another script under a different project? Now you can trace that path nicely 
@@ -88,7 +89,7 @@ And you must have several on your mind right now - don't hesitate to submit your
 ## Tests
 In order to run the test, simply run the following command:
 ```
-npm test -- --coverage
+npm test
 ```
 To get the tests coverage report run the following command:
 ```

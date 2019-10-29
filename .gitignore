@@ -2,3 +2,4 @@
 /coverage
 /npmapper
 .DS_Store
+.vscode

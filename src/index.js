@@ -39,6 +39,7 @@ export async function mapNpmScripts(options) {
         originJsonFilePath = jsonFilePath;
         const result = await parseNpmScripts(jsonFilePath, scriptName);
         createReport(result, targetDir, reportType);
+        return result;
     } catch (error) {
         console.error(`${chalk.red.bold(error)}`);
         throw error;
@@ -249,8 +250,7 @@ async function getJsonFileContent(jsonFilePath) {
         const jsonFileContentData = await fs.readFile(jsonFilePath, 'utf-8');
         return JSON.parse(jsonFileContentData);
     } catch (error) {
-        console.error('%s Could not read package.json file', chalk.red.bold('ERROR'));
-        process.exit(1);
+        throw new Error(`Could not read the package.json file under ${jsonFilePath}`);
     }
 }
 
@@ -262,7 +262,7 @@ async function getJsonFileContent(jsonFilePath) {
  */
 async function getIsJsonFileAccessible(jsonFilePath) {
     try {
-        await fs.access(jsonFilePath, fs.constants.R_OK);
+        await fs.access(jsonFilePath, fs.constants.F_OK);
     } catch (error) {
         throw new Error(`No package.json file can be found on ${jsonFilePath}`);
     }
@@ -282,7 +282,6 @@ async function createReport(scriptsMappingResult, packageJsonFilePath, reportTyp
         case HTML_REPORT_TYPE:
         default:
             await createHtmlReport(scriptsMappingResult, packageJsonFilePath);
-            break;
     }
 }
 

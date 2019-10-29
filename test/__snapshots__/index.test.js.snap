@@ -1,103 +1,391 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Main application getSingleCommandObject method should return action object for a multi dashed parameter some with values and some without 1`] = `
-Object {
-  "name": "dummy command",
-  "params": Array [
-    Object {
-      "name": "--firstParam",
-      "value": "firstParamValue",
-    },
-    Object {
-      "name": "--secondParam",
-      "value": undefined,
-    },
-    Object {
-      "name": "--thirdParam",
-      "value": undefined,
-    },
-  ],
-  "type": "command",
-}
+exports[`NPMapper tool -  Parsing scripts handling "--prefix" parameter should hop to other package.json file when --prefix param is set to a value 1`] = `
+Array [
+  Object {
+    "actions": Array [
+      Object {
+        "actions": Array [
+          Object {
+            "name": "mock other action",
+            "params": Array [],
+            "type": "command",
+          },
+        ],
+        "location": "otherMockPath",
+        "name": "other",
+        "params": Array [],
+        "post": "N/A",
+        "pre": "N/A",
+        "type": "script",
+      },
+    ],
+    "name": "build",
+    "params": Array [],
+    "post": "N/A",
+    "pre": "N/A",
+    "type": "script",
+  },
+]
 `;
 
-exports[`Main application getSingleCommandObject method should return action object for a multi dashed parameter with values 1`] = `
-Object {
-  "name": "dummy command",
-  "params": Array [
-    Object {
-      "name": "--firstParam",
-      "value": "firstParamValue",
-    },
-    Object {
-      "name": "--secondParam",
-      "value": "secondParamValue",
-    },
-    Object {
-      "name": "--thirdParam",
-      "value": "thirdParamValue",
-    },
-  ],
-  "type": "command",
-}
+exports[`NPMapper tool -  Parsing scripts handling "--prefix" parameter should hop to other package.json file when --prefix param is set to an npm configuration 1`] = `
+Array [
+  Object {
+    "actions": Array [
+      Object {
+        "actions": Array [
+          Object {
+            "name": "mock other action",
+            "params": Array [],
+            "type": "command",
+          },
+        ],
+        "location": "otherMockPath",
+        "name": "other",
+        "params": Array [],
+        "post": "N/A",
+        "pre": "N/A",
+        "type": "script",
+      },
+    ],
+    "name": "build",
+    "params": Array [],
+    "post": "N/A",
+    "pre": "N/A",
+    "type": "script",
+  },
+]
 `;
 
-exports[`Main application getSingleCommandObject method should return action object for a multi dashed parameter with values with random spaces 1`] = `
-Object {
-  "name": "dummy command",
-  "params": Array [
-    Object {
-      "name": "--firstParam",
-      "value": "",
-    },
-    Object {
-      "name": "--secondParam",
-      "value": "secondParamValue",
-    },
-    Object {
-      "name": "--thirdParam",
-      "value": "thirdParamValue",
-    },
-  ],
-  "type": "command",
-}
+exports[`NPMapper tool -  Parsing scripts script parameters parsing should extract and append parameters if exist 1`] = `
+Array [
+  Object {
+    "actions": Array [
+      Object {
+        "actions": Array [
+          Object {
+            "name": "mock other action",
+            "params": Array [],
+            "type": "command",
+          },
+        ],
+        "name": "other",
+        "params": Array [
+          Object {
+            "name": "--param1",
+            "value": "value1",
+          },
+        ],
+        "post": "N/A",
+        "pre": "N/A",
+        "type": "script",
+      },
+    ],
+    "name": "build",
+    "params": Array [],
+    "post": "N/A",
+    "pre": "N/A",
+    "type": "script",
+  },
+]
 `;
 
-exports[`Main application getSingleCommandObject method should return action object for a singe dashed parameter with value 1`] = `
-Object {
-  "name": "dummy command",
-  "params": Array [
-    Object {
-      "name": "-q",
-      "value": "qValue",
-    },
-  ],
-  "type": "command",
-}
+exports[`NPMapper tool -  Parsing scripts script parameters parsing should handle params which are defined with an "=" sign 1`] = `
+Array [
+  Object {
+    "actions": Array [
+      Object {
+        "name": "mock script",
+        "params": Array [
+          Object {
+            "name": "--param1",
+            "value": "value1",
+          },
+        ],
+        "type": "command",
+      },
+    ],
+    "name": "build",
+    "params": Array [],
+    "post": "N/A",
+    "pre": "N/A",
+    "type": "script",
+  },
+]
 `;
 
-exports[`Main application getSingleCommandObject method should return action object for a singe dashed parameter without value 1`] = `
-Object {
-  "name": "dummy command",
-  "params": Array [
-    Object {
-      "name": "-q",
-      "value": undefined,
-    },
-  ],
-  "type": "command",
-}
+exports[`NPMapper tool -  Parsing scripts script parameters parsing should resolve values which are defined in npm config 1`] = `
+Array [
+  Object {
+    "actions": Array [
+      Object {
+        "name": "mock script",
+        "params": Array [
+          Object {
+            "name": "--param1",
+            "value": "mockParamValue (from npm configuration named \\"mockParamValueConfig\\")",
+          },
+        ],
+        "type": "command",
+      },
+    ],
+    "name": "build",
+    "params": Array [],
+    "post": "N/A",
+    "pre": "N/A",
+    "type": "script",
+  },
+]
 `;
 
-exports[`Main application getSingleCommandObject method should return action object for a single dashed parameter with name and value separate with "=" sign 1`] = `
-Object {
-  "name": "dummy command",
-  "params": Array [
-    Object {
-      "name": "--firstParam",
-      "value": "firstParamValue",
+exports[`NPMapper tool -  Parsing scripts script parameters parsing should return action object for a multi dashed parameter some with values and some without 1`] = `
+Array [
+  Object {
+    "actions": Array [
+      Object {
+        "name": "mock script",
+        "params": Array [
+          Object {
+            "name": "--firstParam",
+            "value": "firstParamValue",
+          },
+          Object {
+            "name": "--secondParam",
+            "value": undefined,
+          },
+          Object {
+            "name": "--thirdParam",
+            "value": undefined,
+          },
+        ],
+        "type": "command",
+      },
+    ],
+    "name": "build",
+    "params": Array [],
+    "post": "N/A",
+    "pre": "N/A",
+    "type": "script",
+  },
+]
+`;
+
+exports[`NPMapper tool -  Parsing scripts script parameters parsing should return action object for a multi dashed parameter with values 1`] = `
+Array [
+  Object {
+    "actions": Array [
+      Object {
+        "name": "mock script",
+        "params": Array [
+          Object {
+            "name": "--firstParam",
+            "value": "firstParamValue",
+          },
+          Object {
+            "name": "--secondParam",
+            "value": "secondParamValue",
+          },
+          Object {
+            "name": "--thirdParam",
+            "value": "thirdParamValue",
+          },
+        ],
+        "type": "command",
+      },
+    ],
+    "name": "build",
+    "params": Array [],
+    "post": "N/A",
+    "pre": "N/A",
+    "type": "script",
+  },
+]
+`;
+
+exports[`NPMapper tool -  Parsing scripts script parameters parsing should return action object for a multi dashed parameter with values with random spaces 1`] = `
+Array [
+  Object {
+    "actions": Array [
+      Object {
+        "name": "mock script",
+        "params": Array [
+          Object {
+            "name": "--firstParam",
+            "value": "firstParamValue",
+          },
+          Object {
+            "name": "--secondParam",
+            "value": "secondParamValue",
+          },
+          Object {
+            "name": "--thirdParam",
+            "value": "thirdParamValue",
+          },
+        ],
+        "type": "command",
+      },
+    ],
+    "name": "build",
+    "params": Array [],
+    "post": "N/A",
+    "pre": "N/A",
+    "type": "script",
+  },
+]
+`;
+
+exports[`NPMapper tool -  Parsing scripts script parameters parsing should return action object for a singe dashed parameter with value 1`] = `
+Array [
+  Object {
+    "actions": Array [
+      Object {
+        "name": "mock script",
+        "params": Array [
+          Object {
+            "name": "-param1",
+            "value": "param1Value",
+          },
+        ],
+        "type": "command",
+      },
+    ],
+    "name": "build",
+    "params": Array [],
+    "post": "N/A",
+    "pre": "N/A",
+    "type": "script",
+  },
+]
+`;
+
+exports[`NPMapper tool -  Parsing scripts script parameters parsing should return action object for a singe dashed parameter without value 1`] = `
+Array [
+  Object {
+    "actions": Array [
+      Object {
+        "name": "mock script",
+        "params": Array [
+          Object {
+            "name": "-param1",
+            "value": undefined,
+          },
+        ],
+        "type": "command",
+      },
+    ],
+    "name": "build",
+    "params": Array [],
+    "post": "N/A",
+    "pre": "N/A",
+    "type": "script",
+  },
+]
+`;
+
+exports[`NPMapper tool -  Parsing scripts script parameters parsing should return action object for a single dashed parameter with name and value separate with "=" sign 1`] = `
+Array [
+  Object {
+    "actions": Array [
+      Object {
+        "name": "mock script",
+        "params": Array [
+          Object {
+            "name": "--firstParam",
+            "value": "firstParamValue",
+          },
+        ],
+        "type": "command",
+      },
+    ],
+    "name": "build",
+    "params": Array [],
+    "post": "N/A",
+    "pre": "N/A",
+    "type": "script",
+  },
+]
+`;
+
+exports[`NPMapper tool -  Parsing scripts should auto map post scripts 1`] = `
+Array [
+  Object {
+    "actions": Array [
+      Object {
+        "name": "mock build script",
+        "params": Array [],
+        "type": "command",
+      },
+    ],
+    "name": "build",
+    "params": Array [],
+    "post": Object {
+      "actions": Array [
+        Object {
+          "name": "mock post build script",
+          "params": Array [],
+          "type": "command",
+        },
+      ],
+      "name": "postbuild",
+      "params": Array [],
+      "post": "N/A",
+      "pre": "N/A",
+      "type": "script",
     },
-  ],
-  "type": "command",
-}
+    "pre": "N/A",
+    "type": "script",
+  },
+]
+`;
+
+exports[`NPMapper tool -  Parsing scripts should auto map pre scripts 1`] = `
+Array [
+  Object {
+    "actions": Array [
+      Object {
+        "name": "mock build script",
+        "params": Array [],
+        "type": "command",
+      },
+    ],
+    "name": "build",
+    "params": Array [],
+    "post": "N/A",
+    "pre": Object {
+      "actions": Array [
+        Object {
+          "name": "mock pre build script",
+          "params": Array [],
+          "type": "command",
+        },
+      ],
+      "name": "prebuild",
+      "params": Array [],
+      "post": "N/A",
+      "pre": "N/A",
+      "type": "script",
+    },
+    "type": "script",
+  },
+]
+`;
+
+exports[`NPMapper tool -  Parsing scripts should get the scripts array for a specific one 1`] = `
+Array [
+  Object {
+    "actions": Array [
+      Object {
+        "name": "mock build action",
+        "params": Array [],
+        "type": "command",
+      },
+    ],
+    "name": "build",
+    "params": Array [],
+    "post": "N/A",
+    "pre": "N/A",
+    "type": "script",
+  },
+]
 `;
