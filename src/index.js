@@ -15,7 +15,7 @@ import {
     SERIAL_COMMAND_DELIMITER,
     PRE_SCRIPT_PREFIX,
     POST_SCRIPT_PREFIX,
-    NESTED_SCRIPT_REGEX,
+    NESTED_NPM_SCRIPT_REGEX,
     PREFIX_REGEX,
     PREFIX_VALUE_REGEX,
     CONFIG_PROP_REGEX,
@@ -23,6 +23,7 @@ import {
     PARAMS_REGEX,
     EQUAL_SIGN_REGEX,
     NPM_PARAMS,
+    NESTED_YARN_SCRIPT_REGEX,
 } from './constants';
 
 let originJsonFilePath;
@@ -206,14 +207,13 @@ async function getActionsArray(rawActions, jsonFileContent) {
     return await reduce(
         rawActions,
         async (acc, curr) => {
-            // If the action is a nested NPM script we wish to dig inside it
-            if (NESTED_SCRIPT_REGEX.test(curr)) {
-                const nestedScriptName = curr.replace(NESTED_SCRIPT_REGEX, '');
-                // Trim and clear any NPM's params (in the future it will be nice
-                // to support them as well)
-                const trimmedNestedScriptName = nestedScriptName.replace(NPM_PARAMS, '').trim();
-                const singleScriptObject = await getSingleScriptObject(trimmedNestedScriptName, jsonFileContent);
-                acc.push(singleScriptObject);
+            // If the action is a nested NPM or Yarn script we wish to dig inside it
+            if (NESTED_NPM_SCRIPT_REGEX.test(curr)) {
+                const singleNpmScriptObject = await extractSingleNestedScriptObj(curr, jsonFileContent, NESTED_NPM_SCRIPT_REGEX);
+                acc.push(singleNpmScriptObject);
+            } else if (NESTED_YARN_SCRIPT_REGEX.test(curr)) {
+                const singleYarnScriptObject = await extractSingleNestedScriptObj(curr, jsonFileContent, NESTED_YARN_SCRIPT_REGEX);
+                acc.push(singleYarnScriptObject);
             } else {
                 // If the action is not a nested script we are dealing with a command
                 acc.push(getSingleCommandObject(curr, scriptsConfig));
@@ -222,6 +222,21 @@ async function getActionsArray(rawActions, jsonFileContent) {
         },
         []
     );
+}
+
+/**
+ * Extracts a single nested script object from a given string.
+ * @param {String} curr - The String representing a call to a nest npm or yarn script 
+ * @param {Object} jsonFileContent - An object representing the package.json content
+ * @param {RegExp} nestedScriptRegex - Which script are we looking for, NPM or Yarn
+ */
+async function extractSingleNestedScriptObj(curr, jsonFileContent, nestedScriptRegex) {
+    const nestedScriptName = curr.replace(nestedScriptRegex, '');
+    // Trim and clear any NPM's params (in the future it will be nice
+    // to support them as well)
+    const trimmedNestedScriptName = nestedScriptName.replace(NPM_PARAMS, '').trim();
+    const singleScriptObject = await getSingleScriptObject(trimmedNestedScriptName, jsonFileContent);
+    return singleScriptObject;
 }
 
 /**

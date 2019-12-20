@@ -98,6 +98,48 @@ describe('NPMapper tool - ', () => {
             expect(result).toMatchSnapshot();
         });
 
+        it('should parse a nested npm script', async () => {
+            const jsonFileContent = `
+                {
+                    "scripts": {
+                        "build": "npm run other",
+                        "other": "mock other action"
+                    }
+                }`;
+            fs.readFile.mockReturnValue(jsonFileContent);
+            const result = await mapNpmScripts({targetDir: MOCK_PATH, scriptName: 'build'});
+            expect(result[0].actions[0].name).toEqual('other');
+            expect(result[0].actions[0].type).toEqual('script');
+        });
+
+        it('should parse a nested yarn script without using "run" to execute it', async () => {
+            const jsonFileContent = `
+                {
+                    "scripts": {
+                        "build": "yarn other",
+                        "other": "mock other action"
+                    }
+                }`;
+            fs.readFile.mockReturnValue(jsonFileContent);
+            const result = await mapNpmScripts({targetDir: MOCK_PATH, scriptName: 'build'});
+            expect(result[0].actions[0].name).toEqual('other');
+            expect(result[0].actions[0].type).toEqual('script');
+        });
+
+        it('should parse a nested yarn script with using "run" to execute it', async () => {
+            const jsonFileContent = `
+                {
+                    "scripts": {
+                        "build": "yarn run other",
+                        "other": "mock other action"
+                    }
+                }`;
+            fs.readFile.mockReturnValue(jsonFileContent);
+            const result = await mapNpmScripts({targetDir: MOCK_PATH, scriptName: 'build'});
+            expect(result[0].actions[0].name).toEqual('other');
+            expect(result[0].actions[0].type).toEqual('script');
+        });
+
         describe('script parameters parsing', () => {
             it('should extract and append parameters if exist', async () => {
                 const jsonFileContent = `
@@ -151,7 +193,7 @@ describe('NPMapper tool - ', () => {
                 expect(result).toMatchSnapshot();
             });
 
-            it('should return action object for a singe dashed parameter without value', async () => {
+            it('should return action object for a single dashed parameter without value', async () => {
                 const jsonFileContent = `
                 {
                     "scripts": {

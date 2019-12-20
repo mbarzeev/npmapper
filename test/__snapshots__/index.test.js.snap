@@ -259,7 +259,7 @@ Array [
 ]
 `;
 
-exports[`NPMapper tool -  Parsing scripts script parameters parsing should return action object for a singe dashed parameter without value 1`] = `
+exports[`NPMapper tool -  Parsing scripts script parameters parsing should return action object for a single dashed parameter with name and value separate with "=" sign 1`] = `
 Array [
   Object {
     "actions": Array [
@@ -267,8 +267,8 @@ Array [
         "name": "mock script",
         "params": Array [
           Object {
-            "name": "-param1",
-            "value": undefined,
+            "name": "--firstParam",
+            "value": "firstParamValue",
           },
         ],
         "type": "command",
@@ -283,7 +283,7 @@ Array [
 ]
 `;
 
-exports[`NPMapper tool -  Parsing scripts script parameters parsing should return action object for a single dashed parameter with name and value separate with "=" sign 1`] = `
+exports[`NPMapper tool -  Parsing scripts script parameters parsing should return action object for a single dashed parameter without value 1`] = `
 Array [
   Object {
     "actions": Array [
@@ -291,8 +291,8 @@ Array [
         "name": "mock script",
         "params": Array [
           Object {
-            "name": "--firstParam",
-            "value": "firstParamValue",
+            "name": "-param1",
+            "value": undefined,
           },
         ],
         "type": "command",
