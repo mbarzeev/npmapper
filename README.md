@@ -1,3 +1,5 @@
+[![npm package][npm-badge]][npm]
+
 # NPMAPPER
 Map your NPM scripts in a human-friendly way to get a good overview on what's **really** going on in your package.json file
 
