@@ -1,6 +1,6 @@
 {
     "name": "npmapper",
-    "version": "0.1.3",
+    "version": "0.1.4",
     "description": "A tool for mapping npm scripts",
     "main": "src/index.js",
     "private": false,
