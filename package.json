@@ -34,7 +34,7 @@
         "commander": "3.0.2",
         "esm": "3.2.22",
         "fs-extra": "8.0.1",
-        "jsdom": "15.1.1",
+        "jsdom": "16.5.0",
         "open": "6.3.0"
     },
     "devDependencies": {
